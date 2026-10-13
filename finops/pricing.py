@@ -6,6 +6,26 @@ live prices as fast-moving (re-baseline before each cohort).
 from __future__ import annotations
 
 
+def cache_break_even_reads(price_in_per_m: float, write_cost_per_m: float,
+                           read_discount: float = 0.10) -> float:
+    """Reads per prefix needed to cover an incremental cache write fee.
+
+    Write cost is additional to the ordinary input charge; all rates are USD/1M.
+    """
+    if price_in_per_m <= 0 or write_cost_per_m < 0 or not 0 <= read_discount < 1:
+        raise ValueError("Invalid cache prices or read discount")
+    return write_cost_per_m / (price_in_per_m * (1 - read_discount))
+
+
+def cache_is_worth_it(avg_cache_reads: float, write_cost_per_m: float,
+                      price_in_per_m: float, read_discount: float = 0.10) -> bool:
+    """Cache only when read savings strictly exceed incremental write fees."""
+    if avg_cache_reads < 0:
+        raise ValueError("Reads must be nonnegative")
+    return avg_cache_reads > cache_break_even_reads(
+        price_in_per_m, write_cost_per_m, read_discount)
+
+
 def request_cost(
     input_tok: int,
     output_tok: int,

@@ -1,0 +1,171 @@
+{
+  "M2": {
+    "cache_scenarios": [
+      {
+        "reads": 1.0,
+        "cost": 9.6585881,
+        "per_m": 1.2821656022207275
+      },
+      {
+        "reads": 5.0,
+        "cost": 8.81697147,
+        "per_m": 1.1704420374439122
+      }
+    ],
+    "stages": {
+      "baseline": 48.87416100000006,
+      "cascade": 11.4756428,
+      "cache_no_write": 10.2791882,
+      "batch_no_write": 8.48462297,
+      "with_write": 8.816971469999995
+    },
+    "baseline_daily": 48.87,
+    "optimized_daily": 8.82,
+    "baseline_per_m": 6.488,
+    "optimized_per_m": 1.17,
+    "savings_pct": 82.0,
+    "total_tokens": 7533027
+  },
+  "carbon": {
+    "jobs": [
+      {
+        "job_id": "job-train-llm",
+        "gpu_hours": 2240.0,
+        "wh": 1568000.0,
+        "regions": {
+          "us-east-1": {
+            "carbon_g": 595840.0,
+            "electricity_usd": 188.16
+          },
+          "us-west-2": {
+            "carbon_g": 188160.0,
+            "electricity_usd": 109.76
+          },
+          "europe-north1": {
+            "carbon_g": 47040.0,
+            "electricity_usd": 141.12
+          },
+          "europe-central2": {
+            "carbon_g": 1034880.0,
+            "electricity_usd": 282.24
+          },
+          "us-east-wa": {
+            "carbon_g": 141120.0,
+            "electricity_usd": 86.24
+          }
+        }
+      },
+      {
+        "job_id": "job-train-embed",
+        "gpu_hours": 200.0,
+        "wh": 80000.0,
+        "regions": {
+          "us-east-1": {
+            "carbon_g": 30400.0,
+            "electricity_usd": 9.6
+          },
+          "us-west-2": {
+            "carbon_g": 9600.0,
+            "electricity_usd": 5.6000000000000005
+          },
+          "europe-north1": {
+            "carbon_g": 2400.0,
+            "electricity_usd": 7.199999999999999
+          },
+          "europe-central2": {
+            "carbon_g": 52800.0,
+            "electricity_usd": 14.399999999999999
+          },
+          "us-east-wa": {
+            "carbon_g": 7200.0,
+            "electricity_usd": 4.4
+          }
+        }
+      },
+      {
+        "job_id": "job-finetune",
+        "gpu_hours": 36.0,
+        "wh": 25200.0,
+        "regions": {
+          "us-east-1": {
+            "carbon_g": 9576.0,
+            "electricity_usd": 3.024
+          },
+          "us-west-2": {
+            "carbon_g": 3024.0,
+            "electricity_usd": 1.764
+          },
+          "europe-north1": {
+            "carbon_g": 756.0,
+            "electricity_usd": 2.268
+          },
+          "europe-central2": {
+            "carbon_g": 16632.0,
+            "electricity_usd": 4.536
+          },
+          "us-east-wa": {
+            "carbon_g": 2268.0,
+            "electricity_usd": 1.386
+          }
+        }
+      },
+      {
+        "job_id": "job-dev-sandbox",
+        "gpu_hours": 352.0,
+        "wh": 52800.0,
+        "regions": {
+          "us-east-1": {
+            "carbon_g": 20064.0,
+            "electricity_usd": 6.335999999999999
+          },
+          "us-west-2": {
+            "carbon_g": 6336.0,
+            "electricity_usd": 3.696
+          },
+          "europe-north1": {
+            "carbon_g": 1584.0,
+            "electricity_usd": 4.752
+          },
+          "europe-central2": {
+            "carbon_g": 34848.0,
+            "electricity_usd": 9.504
+          },
+          "us-east-wa": {
+            "carbon_g": 4752.0,
+            "electricity_usd": 2.904
+          }
+        }
+      },
+      {
+        "job_id": "job-batch-eval",
+        "gpu_hours": 90.0,
+        "wh": 63000.0,
+        "regions": {
+          "us-east-1": {
+            "carbon_g": 23940.0,
+            "electricity_usd": 7.56
+          },
+          "us-west-2": {
+            "carbon_g": 7560.0,
+            "electricity_usd": 4.41
+          },
+          "europe-north1": {
+            "carbon_g": 1890.0,
+            "electricity_usd": 5.67
+          },
+          "europe-central2": {
+            "carbon_g": 41580.0,
+            "electricity_usd": 11.34
+          },
+          "us-east-wa": {
+            "carbon_g": 5670.0,
+            "electricity_usd": 3.465
+          }
+        }
+      }
+    ],
+    "cleanest": "europe-north1",
+    "cheapest": "us-east-wa",
+    "saved_g": 626150.0
+  }
+}

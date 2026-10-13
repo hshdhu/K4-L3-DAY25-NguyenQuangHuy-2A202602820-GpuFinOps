@@ -9,7 +9,7 @@ import csv
 import os
 from missions._common import load_csv, num, ROOT
 from finops import allocation
-from missions.m2_inference_levers import MODEL_PRICES
+from missions.m2_inference_levers import MODEL_PRICES, optimized_request_cost
 from finops import pricing
 
 TAGS = ["team", "project"]
@@ -21,9 +21,7 @@ def run(verbose: bool = True) -> dict:
     for r in rows:
         inp, out = int(num(r["input_tokens"])), int(num(r["output_tokens"]))
         pin, pout = MODEL_PRICES[r["route_tier"]]
-        cost = pricing.request_cost(inp, out, pin, pout,
-                                    cached_in=int(num(r["cached_input_tokens"])),
-                                    batch=bool(int(num(r["is_batch"]))))
+        cost = optimized_request_cost(r)
         priced.append({"team": r["team"], "project": r["project"],
                        "service": "gpu-inference", "cost": cost})
 
